@@ -13,6 +13,8 @@ const hideText = document.getElementById("hideText");
 const CartItems = document.getElementById("CartItems");
 const ClosedCart = document.querySelector("#closed");
 const Total = document.getElementById("Total");
+const ConfirmandDone = document.getElementById('ConfirmandDone');
+const FinalParent = document.getElementById('FinalParent');
 
 let DynamicQuantity = new Array(counter.length).fill(0);
 let OverAllTotalQuanity = new Array(counter.length).fill(0);
@@ -24,17 +26,16 @@ function DynamicItemsProduct2({ Names, Prices, quantity, id }) {
 
   if (ProductDy) {
     const h11 = ProductDy.querySelector("h1.font-semibold");
-    const qtySpan = ProductDy.querySelector("#ItemQuailty");
+    const qtySpan = ProductDy.querySelector(`#ItemQuailty${id}`);
     const priceSpan = ProductDy.querySelector("span.font-bold.text-black.ml-4");
 
     h11.firstChild.textContent = "$" + (Prices * quantity).toFixed(2);
     OverAllTotalQuanity[id.slice(-1)] = (Prices * quantity);
-    CartQuantityasMultiply[id.slice(-1)] = quantity; //TODO: for Cart(remover) and product CartRemover on this LINE of code...
+    CartQuantityasMultiply[id.slice(-1)] = quantity; 
     qtySpan.textContent = "x" + quantity;
     priceSpan.textContent = "$" + Prices;
     return;
   }
-  console.log(CartQuantityasMultiply);
 
   ProductDy = document.createElement("div");
   const ProductDy2 = document.createElement("div");
@@ -51,7 +52,7 @@ function DynamicItemsProduct2({ Names, Prices, quantity, id }) {
   h1.textContent = Names;
   h11.classList = "font-semibold";
   h11.textContent = "$" + (Prices * quantity).toFixed(2);
-  span.id = "ItemQuailty";
+  span.id = "ItemQuailty" + id;
   span.textContent = "x" + quantity + " ";
   span.style.color = "rgb(206, 100, 0)";
   h11.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -69,12 +70,26 @@ function DynamicItemsProduct2({ Names, Prices, quantity, id }) {
 
 CartItems.addEventListener("click", function (et) {
   if (et.target.classList.contains("ItemR")) {
-    et.target.closest(".flex").remove();
-    console.log(this.childElementCount)
-    //TODO: Find out the way to access when triggerd the btn and remove the remaning Parts of Numbers
-  }
+    let carry = this.lastElementChild.previousElementSibling.id;
+    let Carry = Number(carry.slice(-1));
+    FoodItemList.children[Carry].firstElementChild.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling.nextElementSibling.textContent = 0; //reset
+
+let total = DynamicQuantity.reduce((first, next) => {
+    return first + next;
 });
 
+  quantity.textContent = `(${total -= DynamicQuantity[Carry]})`;    
+  total -= DynamicQuantity[Carry+1];
+  DynamicQuantity[Carry+1] = 0
+
+  CartQuantityasMultiply[Carry] = 0; //ArrayStore0
+
+  Total.textContent ='$' + (Total.textContent.slice(1) - OverAllTotalQuanity[Carry]).toFixed(2);
+  OverAllTotalQuanity[Carry] = 0;
+
+    et.target.closest(".flex").remove();
+  }
+});
 
 bodyCart.forEach((abc, index) => {
   abc.addEventListener(
@@ -85,6 +100,7 @@ bodyCart.forEach((abc, index) => {
       decrease[index].classList.toggle("hidden", ans);
 
       if (!ans) selected[index].classList.add("outline-2", "outline-[#be4f00]");
+
       const CarryWithNameandPrices = {
         id: "Food" + index,
         Names: ProductName.item(index).textContent,
@@ -98,7 +114,6 @@ bodyCart.forEach((abc, index) => {
       Total.textContent = '$' + OverAllTotalQuanity.reduce((first,last) => {
         return first + last;
       }).toFixed(2);
-      //RemoveCartCounter(index);
     },
     { once: false }
   );
@@ -110,8 +125,6 @@ bodyCart.forEach((abc, index) => {
     { once: true }
   );
 });
-
-
 
 Array.from(increase).forEach((adding, index) => {
   adding.addEventListener("click", function (et) {
@@ -126,10 +139,10 @@ function AddtoCart(rest) {
   else emptyCake.src = "";
 
   hideText.classList.toggle("hidden", rest);
-  let total = DynamicQuantity.reduce((first, next) => {
+  let Finaltotal = DynamicQuantity.reduce((first, next) => {
     return first + next;
   });
-  quantity.textContent = `(${total})`;
+  quantity.textContent = `(${Finaltotal})`;
 }
 
 Array.from(decrease).forEach((subtracting, index) => {
@@ -140,3 +153,10 @@ Array.from(decrease).forEach((subtracting, index) => {
     AddtoCart(DynamicQuantity[index]);
   });
 });
+
+ConfirmandDone.addEventListener('click',function(et) {
+      FinalParent.classList.toggle('hidden');
+      //TODO: 1.CartItems list Shows with same as Cart
+      //TODO: 2.Startnew order btn works like (refresh website[easy])/reset values[Hard](all)
+      //FIXME: ON MONDAY🔨 inshallah! 
+})
