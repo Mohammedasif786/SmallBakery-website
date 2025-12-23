@@ -8,7 +8,7 @@
   "description": "![Design preview for the Product list with cart coding challenge](./preview.jpg)",
   "main": "./docs/style.script.js",
   "scripts": {
-    "tcss": "npx @tailwindcss/cli -i ./docs/input.css -o ./docs/output.css --watch",
+    "tcss": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
     "build": "npm run tcss"
   },
   "keywords": [],
