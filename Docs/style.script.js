@@ -78,6 +78,11 @@ let total = DynamicQuantity.reduce((first, next) => {
     return first + next;
 });
 
+  if(!CartItems.childElementCount) {
+    Total.textContent = 0;
+    FinalParent.cl
+  }
+
   quantity.textContent = `(${total -= DynamicQuantity[Carry]})`;    
   total -= DynamicQuantity[Carry+1];
   DynamicQuantity[Carry+1] = 0
@@ -157,6 +162,7 @@ Array.from(decrease).forEach((subtracting, index) => {
 ConfirmandDone.addEventListener('click',function(et) {
       FinalParent.classList.toggle('hidden');
       //TODO: 1.CartItems list Shows with same as Cart
+      console.log(CartItems.children);
       //TODO: 2.Startnew order btn works like (refresh website[easy])/reset values[Hard](all)
       //FIXME: ON MONDAY🔨 inshallah! 
 })
