@@ -6,9 +6,9 @@
   "name": "product-list-with-cart-main",
   "version": "1.0.0",
   "description": "![Design preview for the Product list with cart coding challenge](./preview.jpg)",
-  "main": "index.js",
+  "main": "docs/style.script.js",
   "scripts": {
-    "tcss": "npx @tailwindcss/cli -i ./Docs/input.css -o ./Docs/output.css --watch",
+    "tcss": "npx @tailwindcss/cli -i ./docs/input.css -o ./docs/output.css --watch",
     "build": "npm run tcss"
   },
   "keywords": [],
