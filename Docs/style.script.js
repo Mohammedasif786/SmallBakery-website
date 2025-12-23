@@ -13,6 +13,7 @@ const hideText = document.getElementById("hideText");
 const CartItems = document.getElementById("CartItems");
 const ClosedCart = document.querySelector("#closed");
 const Total = document.getElementById("Total");
+const ImageArray = FoodItemList.querySelectorAll('.ImageArray');
 const ConfirmandDone = document.getElementById('ConfirmandDone');
 const FinalParent = document.getElementById('FinalParent');
 
@@ -113,8 +114,8 @@ bodyCart.forEach((abc, index) => {
           ProductPrice.item(index).textContent.trim().slice(1)
         ).toFixed(2),
         quantity: DynamicQuantity[index],
-        
       };
+
       DynamicItemsProduct2(CarryWithNameandPrices);
       Total.textContent = '$' + OverAllTotalQuanity.reduce((first,last) => {
         return first + last;
@@ -159,10 +160,65 @@ Array.from(decrease).forEach((subtracting, index) => {
   });
 });
 
+const OrderDoneMessage = document.getElementById('OrderDoneMessage');
+const OrderCart = document.getElementById('OrderCart');
+const ResetValues = document.getElementById('ResetValues');
+
+const FirstP = document.getElementById('FirstP');
 ConfirmandDone.addEventListener('click',function(et) {
-      FinalParent.classList.toggle('hidden');
-      //TODO: 1.CartItems list Shows with same as Cart
-      console.log(CartItems.children);
-      //TODO: 2.Startnew order btn works like (refresh website[easy])/reset values[Hard](all)
-      //FIXME: ON MONDAY🔨 inshallah! 
+      OrderDoneMessage.classList.toggle('md:hidden');
+      FinalParent.classList.toggle('mobile:hidden');
+      LoopRole();
 })
+
+ResetValues.addEventListener('click',function(et) {
+      OrderDoneMessage.classList.toggle('md:hidden');
+      FinalParent.classList.toggle('mobile:hidden');
+      window.location.reload();
+})
+
+function LoopRole() {
+  const activeIndices = ReturnIndexOfImages();
+  activeIndices.forEach((productIndex) => {
+    const cartItemDiv = document.getElementById("Food" + productIndex);
+    if(cartItemDiv) {
+      const CarryWithNameandPrices = {
+        id: "Food" + productIndex,
+        Names: cartItemDiv.firstChild.firstChild.textContent,
+        image: ImageArray.item(productIndex).src,
+        Prices: Number(
+          ProductPrice.item(productIndex).textContent.trim().slice(1)
+        ).toFixed(2),
+        quantity: DynamicQuantity[productIndex],
+      };
+      FinalDynamicItems(CarryWithNameandPrices);
+    }
+  })
+}
+
+function ReturnIndexOfImages() {
+    const store = [];
+    for (let index = 0; index < DynamicQuantity.length; index++) {
+            if(DynamicQuantity[index])
+                store.push(index);
+    }
+    return store;
+}
+
+function FinalDynamicItems({Names,Prices,quantity,image}) {
+  OrderCart.innerHTML += `<div class="flex-col bg-white rounded-xl p-4">
+        <div class="flex items-center justify-between">
+          <img src="${image}" alt="FoodItem" class="size-16 rounded-xl mx-2">
+          <div>
+            <h1 class="font-bold" id="">${Names}</h1>
+            <h1 class="font-semibold">
+              $${Prices} x<span id="" class="text-orange-400">${quantity}</span
+              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="font-bold text-black"
+                >$${(quantity*Prices).toFixed(2)}</span
+              >
+            </h1>
+          </div>
+          <h1 class="font-bold text-xl ml-3">$${(quantity*Prices).toFixed(2)}</h1>
+        </div>
+      </div>`
+}

@@ -48,8 +48,8 @@
         <div class="">
           <img
             src="../assets/images/image-baklava-mobile.jpg"
-            alt="Cake"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            alt="baklava"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Buy Now">
             <div
@@ -72,7 +72,7 @@
           <img
             src="../assets/images/image-waffle-mobile.jpg"
             alt="waffle"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -94,8 +94,8 @@
         <div class="">
           <img
             src="../assets/images/image-tiramisu-mobile.jpg"
-            alt="light Cake"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            alt="Tiramisu"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -118,7 +118,7 @@
           <img
             src="../assets/images/image-panna-cotta-mobile.jpg"
             alt="Panna"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -140,8 +140,8 @@
         <div class="">
           <img
             src="../assets/images/image-meringue-mobile.jpg"
-            alt="pizzaLikeCake"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            alt="Meringue"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -164,7 +164,7 @@
           <img
             src="../assets/images/image-macaron-mobile.jpg"
             alt="Macaron"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -186,8 +186,8 @@
         <div class="">
           <img
             src="../assets/images/image-creme-brulee-mobile.jpg"
-            alt="Soup"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            alt="Creme-Brulee"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -210,7 +210,7 @@
           <img
             src="../assets/images/image-cake-mobile.jpg"
             alt="Cake"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -232,8 +232,8 @@
         <div class=""> 
           <img
             src="../assets/images/image-brownie-mobile.jpg"
-            alt="browneCake"
-            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected"
+            alt="Brownie"
+            class="rounded-xl hover:outline-2 hover:outline-[#be4f00] cursor-pointer selected ImageArray"
           />
           <div class="flex w-full justify-center" title="Extra Div for Center">
             <div
@@ -285,30 +285,21 @@
     </div>
     <!--Cart Container Finsihed-->
     <!--Order Confimed Message-->
-    <div class="border-2 absolute hidden /mobile:hidden top-14 h-Bh w-full p-4 space-x-3 bg-gray-300 rounded-t-2xl space-y-4" id="FinalParent">
-      <img src="../assets/images/icon-order-confirmed.svg" alt="Done😊" class="my-4 ">
+    <div class="md:h-screen flex md:hidden md:items-center md:place-content-center-safe md:fixed md:inset-0 bg-black/50" id="OrderDoneMessage">
+    <div class="border-2 absolute md:mt-16 md:w-sm md:flex md:flex-col md:h-max md:rounded-2xl mobile:hidden top-14 h-Bh w-full p-4 space-x-3 bg-gray-300 rounded-t-2xl space-y-4 scroll-smooth md:scroll-auto" id="FinalParent">
+      <img src="../assets/images/icon-order-confirmed.svg" alt="Done😊" class="my-4  md:size-16">
       <h1 class="font-bold text-4xl mt-4 py-2 ">Order<br>Confimed</h1>
       <p>We hope you enjoy your food</p>
-      <div class="flex-col bg-white rounded-xl p-4 ">
-        <div class="flex items-center justify-between">
-          <img src="../assets/images/image-cake-thumbnail.jpg" alt="cake" class="size-16 rounded-xl mx-2">
-          <div>
-            <h1 class="font-bold">Strawberry Cake</h1>
-            <h1 class="font-semibold">
-              $7.70 x<span id="itemQuantity" class="text-orange-400">2</span
-              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="font-bold text-black"
-                >$15.40</span
-              >
-            </h1>
-          </div>
-          <h1 class="font-bold text-xl ml-3">$15.40</h1>
-        </div>
+
+      <div id="OrderCart">
+      <!--AutoGenerated By JS🌟-->
       </div>
-      <div class="bg-amber-800 rounded-3xl px-3 py-2 text-center my-2 ">
+      <div class="bg-amber-800 rounded-3xl px-3 py-2 text-center my-2 " id="ResetValues">
         <button class="text-xl font-semibold text-white">Start New Order</button>
       </div>
     </div>
     <!--Order Message DONE-->
+    </div>
     </div>
 
     <div class="attribution">
